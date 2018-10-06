@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+<constant name="struts.devMode" value="true" />
+<!-- 解决中文乱码问题 -->
+<constant name="struts.i18n.encoding" value="UTF-8" />
+<!-- 学生登录注册 -->
+  <package name="student" extends="struts-default">
+  <action name = "student" class = "com.zhh.Action.studentAction">
+  <result name="success">/student/login.html</result>
+  <result name="Loginsuccess">/stuUI/stuIndex.jsp</result>
+  <result name="error">/student/error.jsp</result>
+  </action>
+  <!-- 学生查看个人信息 -->
+  <action name = "EdtInfo" class = "com.zhh.Action.studentAction" method = "EdtInfo">
+  <result name = "FindSuccess">/stuUI/stuInfoEdt.jsp</result>
+   </action>
+  
+  <!-- 学生修改个人信息 -->
+  <action name = "studentUpdata" class = "com.zhh.Action.studentAction" method = "Updata">
+  <result name = "UpdataSuccess">/stuUI/stuIndex.jsp</result>
+  </action>
+  
+  <!-- 学生报名团队 -->
+  <action name = "applyForTeam" class = "com.zhh.Action.studentAction" method = "applyForTeam">
+  <result name = "success" type="chain">showMyTeams</result>
+  <result name = "reApl" type="chain">showTeamDetial</result>
+  </action>
+  <action name="ModifyPassword" class="com.zhh.Action.studentAction" method="ModifyPassword">
+  <result name="success">/stuUI/stuIndex.jsp</result>
+  </action>
+  </package>
+  
+  <package name = "team" extends="struts-default">
+  <!-- 创建团队 -->
+  <action name = "createTeam" class = "com.zhh.Action.teamAction" method = "createTeam">
+  <result name = "success" type="chain">showMyTeams</result>
+  </action>
+  <!-- 团队列表 -->
+  <action name = "showTeams" class = "com.zhh.Action.teamAction" method = "showAllTeams">
+  <result name = "success">/stuUI/showTeams.jsp</result>
+  </action>
+  <!-- 显示自己的团队 -->
+  <action name = "showMyTeams" class = "com.zhh.Action.teamAction" method = "showMyTeams">
+  <result name = "success">/stuUI/showMyTeams.jsp</result>
+  </action>
+  <!-- 多条件查询 -->
+  <action name = "search" class = "com.zhh.Action.teamAction" method = "search">
+  <result name = "list">/stuUI/showSearchedTeams.jsp</result>
+  </action>
+  <!-- 显示简单的团队列表中团队信息-->
+  <action name = "showTeamDetial" class = "com.zhh.Action.teamAction" method = "showTeamDetial">
+  <result name = "success">/stuUI/teamDetial.jsp</result>
+  </action>
+  <!-- 显示自己团队信息 -->
+  <action name="showMyTeamDetial" class="com.zhh.Action.teamAction" method="showMyTeamDetial">
+  <result name = "success">/stuUI/manageTeam.jsp</result>
+  </action>
+  <!-- 修改自己团队的信息（队长权限） -->
+  <action name="updateTeam" class="com.zhh.Action.teamAction" method="updateTeam">
+  <result name="success">/stuUI/stuIndex.jsp</result>
+  </action>
+  <!-- 查看报名的队员 -->
+  <action name="manageMemebers" class="com.zhh.Action.teamAction" method="manageMemebers">
+  <result name="success">/stuUI/manageApl.jsp</result>
+  </action>
+  <!-- 通过成员 -->
+  <action name="passMember" class="com.zhh.Action.teamAction" method="passMember">
+  <result name="list" type="chain">
+  <param name="actionName">manageMemebers</param>
+   <param name="param">${stuTeam.team.teamId}</param> 
+  </result>
+  </action>
+  <!-- 删除成员 -->
+  <action name="deleteMember" class="com.zhh.Action.teamAction" method="deleteMember">
+  <result name="success" type="chain">
+  <param name="actionName">manageMemebers</param>
+   <param name="param">${stuTeam.team.teamId}</param> 
+   </result>
+  </action>
+  </package>
+  
+  
+  <package name = "competition" extends="struts-default">
+  <!-- 展示报名中的竞赛 -->
+  <action name="showAplComp" class="com.zhh.Action.compititionAction" method="showAplComp">
+  <result name="success">/stuUI/showAplComp.jsp</result>
+  </action>
+  <!-- 显示正在进行中的竞赛 -->
+  <action name="showRunningComp" class="com.zhh.Action.compititionAction" method="showRunningComp">
+  <result name="success">/stuUI/showRunningComp.jsp</result>
+  </action>
+  <!-- 显示结束的竞赛 -->
+  <action name="showEndComp" class="com.zhh.Action.compititionAction" method="showEndComp">
+  <result name="success">/stuUI/showEndComp.jsp</result>
+  </action>
+  <!-- 显示竞赛信息 -->
+  <action name="showCompDetial" class="com.zhh.Action.compititionAction" method="showCompDetial">
+  <result name ="success">/stuUI/compDetial.jsp</result>
+  <result name="success1">/stuUI/compDetial1.jsp</result>
+  </action>
+  <!-- 遍历可以报名的团队 -->
+  <action name="selectTeam" class="com.zhh.Action.compititionAction" method="selectTeam">
+  <result name="success">/stuUI/selectMyTeam.jsp</result>
+  </action>
+  <!-- 团队报名竞赛 -->
+  <action name="applyForComp" class="com.zhh.Action.compititionAction" method="applyForComp">
+  <result name="success" type="chain">showMyAplComp</result>
+  <result name="error">/stuUI/overMemberNum.jsp</result>
+  <result name="reApl">/stuUI/reApply.jsp</result>
+  </action>
+  <!-- 个人报名 -->
+  <action name="IndivAplForComp" class="com.zhh.Action.compititionAction" method="IndivAplForComp">
+  <result name="success">/stuUI/stuIndex.jsp</result>
+  <result name="reApl">/stuUI/reApply.jsp</result>
+  </action>
+  <!-- 竞赛管理_报名中的竞赛 -->
+  <action name="showMyAplComp" class="com.zhh.Action.compititionAction" method="myComp_aplComp">
+  <result name="success">/stuUI/myComp_aplComp.jsp</result>
+  </action>
+  <!-- 竞赛管理_进行中的竞赛 -->
+  <action name="showMyRunComp" class="com.zhh.Action.compititionAction" method="myComp_RunningComp">
+  <result name="success">/stuUI/myComp_runComp.jsp</result>
+  </action>
+  <!-- 竞赛管理_结束的竞赛 -->
+  <action name="showMyEndComp" class="com.zhh.Action.compititionAction" method="myComp_endComp">
+  <result name="success">/stuUI/myComp_endComp.jsp</result>
+  </action>
+  <!-- 展示拥有竞赛题目的竞赛详情 -->
+  <action name="showCompDetialwithQue" class="com.zhh.Action.compititionAction" method="showCompDetialWithQue">
+  <result name="success">/stuUI/compDetialWithQue.jsp</result>
+  </action>
+  <!-- 展示竞赛题目列表 -->
+  <action name="showQue" class="com.zhh.Action.compititionAction" method="showQue">
+  <result name="success">/stuUI/showQue.jsp</result>
+  </action>
+  </package>
+  <package name="downloadPart" extends="struts-default">
+  <!-- 下载竞赛题目描述文件 -->
+  <action name="downLaodQue" class="com.zhh.downloadPart.downloadQue">
+            <result type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename=${filename}</param>
+                <param name="bufferSize">4096</param>
+            </result>
+  </action>
+  <!-- 查看竞赛题目描述 -->
+  <action name="showQueIntro" class="com.zhh.Action.compititionAction" method="showQueIntro">
+  <result name="success">/stuUI/questionIntro.jsp</result>
+  </action>
+  <!-- 提交作品 -->
+  <action name="submitWork" class="com.zhh.Action.compititionAction" method="submitWork">
+  <result name="success">/stuUI/stuIndex.jsp</result>
+  <result name="NotLeader">/stuUI/NotLeader.jsp</result>
+  </action>
+  <!-- 显示结束竞赛详情 -->
+  <action name="showEndCompDetial" class="com.zhh.Action.compititionAction" method="showEndCompDetial">
+  <result name="success">/stuUI/endCompDetial.jsp</result>
+  </action>
+  <!-- 个人提交作品 -->
+  <action name="PsubmitWork" class="com.zhh.Action.compititionAction" method="Personal_submitWork">
+  <result name="success">/stuUI/stuIndex.jsp</result>
+  </action>
+  <!-- 展示榜单 -->
+  <action name="showList" class="com.zhh.Action.compititionAction" method="findCompList">
+  <result name="success">/stuUI/compList_team.jsp</result>
+  <result name="Indivi">/stuUI/compList_person.jsp</result>
+  </action>
+  </package>
+  
+  <package name="teacher"	extends="struts-default">
+	<interceptors>
+		<interceptor name="login"
+			class="com.whb.Interceptor.teacherLoginInterceptor" />
+		<interceptor-stack name="LoginStack">
+			<interceptor-ref name="login" />
+			<interceptor-ref name="defaultStack" />
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="LoginStack"/>
+  		<!-- 教师登录 -->
+		<action name="tealogin"	class="com.whb.Action.teacherLoginAction">
+			<result name="success">/teacher1/docs/index.jsp</result>
+			<result name="error" >/teacher1/docs/login.jsp</result>
+		</action>
+		<!-- 竞赛展示列表 -->
+		<action name="compshow" class="com.whb.Action.competitionShowAction">
+            <result name="success">/teacher1/docs/showcomp.jsp</result>
+            <result name="failure">/teacher1/docs/Error.jsp</result>
+            <result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 只展示教师可以管理的竞赛列表 -->
+        <action name="compshowbycomptypeid" class="com.whb.Action.competitionShowAction" method="showBycompType">
+        	<result name="success">/teacher1/docs/showcompByCompType.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 创建竞赛 -->
+        <action name="createComp" class="com.whb.Action.createCompAction">
+        	<result name="success">/teacher1/docs/success.jsp</result>
+        	<result name="error">/teacher1/docs/Error.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 显示竞赛详情 -->
+        <action name="compdetailshow" class="com.whb.Action.compdetailShowAction">
+        	<result name="success">/teacher1/docs/compdetail.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 展示管理竞赛的页面 -->
+        <action name="compmanage" class="com.whb.Action.compManageAction">
+        	<result name="success">/teacher1/docs/compmanager2.jsp</result>
+        	<result name="error">/teacher1/docs/Error.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 参赛人员（团队）详情 -->
+        <action name="teamdetails" class="com.whb.Action.teamdetailsAction">
+        	<result name="success">/teacher1/docs/teamdetails.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 参赛人员（团队）管理（一键通过、删除）（貌似没弄好） -->
+        <action name="personnelManage" class="com.whb.Action.compManagesAction" method="personnelManage">
+        	<result name="success">/teacher1/docs/compmanager_Personnelmanage.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+		<!-- 发布所有竞赛题目 -->
+        <action name="uploadquestion" class="com.whb.Action.compManagesAction" method="uploadquestion">
+        	<result name="success" type="chain">compmanage</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 报名截止按钮 -->
+        <action name="endSignUpComp" class="com.whb.Action.compManagesAction" method="endSignUpComp">
+        	<result name="success" type="chain">compmanage</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 开始竞赛按钮 -->
+        <action name="startcomp" class="com.whb.Action.compManagesAction" method="startComp">
+        	<result name="success">/teacher1/docs/compmanager.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 结束竞赛 -->
+        <action name="endcomp" class="com.whb.Action.compManagesAction" method="endComp">
+        	<result name="success">/teacher1/docs/compmanager.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 人员(队伍)通过 -->
+        <action name="teampass" class="com.whb.Action.teamcompManageAction" method="pass">
+        	<result type="chain" name="success">teamdetails</result>
+        	<result name="error">/teacher1/docs/Error.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 人员(队伍)拒绝 -->
+        <action name="teamrefuse" class="com.whb.Action.teamcompManageAction" method="refuse">
+        	<result type="chain" name="success">teamdetails</result>
+        	<result name="error">/teacher1/docs/Error.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 人员(队伍)全部通过 -->
+        <action name="allpass" class="com.whb.Action.teamcompManageAction" method="allpass">
+        	<result type="chain" name="success">personnelManage</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 人员(队伍)全部拒绝 -->
+        <action name="allrefuse" class="com.whb.Action.teamcompManageAction" method="allrefuse">
+        	<result type="chain" name="success">personnelManage</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 竞赛信息修改 -->
+        <action name="compupdate" class="com.whb.Action.compManagesAction" method="compupdate">
+        	<result name="success">/teacher1/docs/success_update.jsp</result>
+        	<result name="error">/teacher1/docs/Error.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+		<!-- 添加问题 -->
+        <action name="addQuestion" class="com.whb.Action.questionAction" method="addQuestion">
+        	<result type="chain" name="success">showQuestion</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 展示问题 -->
+        <action name="showQuestion" class="com.whb.Action.compManagesAction" method="showQuestion">
+        	<result name="success">/teacher1/docs/competitionManager_showQues.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 修改问题(展示) -->
+        <action name="questionModify" class="com.whb.Action.questionAction" method="questionModify">
+        	<result>/teacher1/docs/competitionManager_modifyQues.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- (评分) -->
+        <action name="preGradeList" class="com.whb.Action.compManagesAction" method="preGradeList">
+        	<result name="success">/teacher1/docs/compmanager_preGradelist.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 给人员（队伍）的作品评分的页面 -->
+		<action name="teamGiveScore" class="com.whb.Action.teamGiveScoreAction">
+			<result name="success">/teacher1/docs/compmanager_preGradelist_works.jsp</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+		</action>
+		<!-- 给人员（队伍）的作品评分 -->
+		<action name="givescore" class="com.whb.Action.teamGiveScoreAction" method="givescore">
+			<result type="chain" name="teamGiveScore">teamGiveScore</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+		</action>
+		<!-- 发布成绩 -->
+		<action name="uploadscore" class="com.whb.Action.compManagesAction" method="uploadscore">
+			<result type="chain" name="compmanage">compmanage</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+		</action>
+		<!-- 预生成榜单 -->
+        <action name="preGrade" class="com.whb.Action.compManagesAction" method="preGrade">
+        	<result name="success">/teacher1/docs/competitionManager_preGrade.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 展示榜单详情 -->
+        <action name="showdetails" class="com.whb.Action.complistAction" method="showdetails">
+        	<result name="success">/teacher1/docs/competionManager_changeComplist.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 修改榜单详情 -->
+        <action name="changeComplistdetails" class="com.whb.Action.complistAction" method="changeComplistdetails">
+        	<result type="chain" name="success">preGrade</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 添加榜单的页面 -->
+        <action name="showaddComplist" class="com.whb.Action.complistAction" method="showaddComplist">
+        	<result name="success">/teacher1/docs/competitionManager_addComplist.jsp</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 成功添加榜单 -->
+        <action name="addComplist" class="com.whb.Action.complistAction" method="addComplist">
+        	<result type="chain" name="success">preGrade</result>
+       		<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 查看榜单 -->
+		<action name="show_complist" class="com.whb.Action.compManagesAction" method="show_complist">
+			<result name="success">/teacher1/docs/competitionManager_show_complist.jsp</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+		</action>
+		<!-- 重新生成榜单 -->
+        <action name="resetcomplist" class="com.whb.Action.complistAction" method="resetcomplist">
+        	<result type="chain" name="success">preGrade</result>
+        	<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 下载的action -->
+        <action name="filedown" class="com.whb.Action.fileDownloadAction"
+            method="execute">
+            <result name="success" type="stream">
+            <param name="contentType">${contentType}</param>
+             <param name="inputName">is</param>
+             <param name="contentDisposition">attachment;filename="${filePath}";filename*=utf-8''${filePath}</param>
+             <param name="bufferSize">102400</param>
+
+            </result>
+        </action>
+        <!-- 教师信息查看 -->
+        <action name="teacherinformation" class="com.whb.Action.teacherInformationAction"
+        method="show">
+        	<result name="success">/teacher1/docs/teacherInformation.jsp</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+        <!-- 教师信息修改 --> 
+        <action name="teacherinformationchange" class="com.whb.Action.teacherInformationAction"
+        method="change">
+        	<result name="success">/teacher1/docs/teacherInformation.jsp</result>
+			<result name="login">/teacher1/docs/login.jsp</result>
+        </action>
+	</package>
+</struts>    

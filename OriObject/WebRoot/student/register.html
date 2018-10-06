@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>register.html</title>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+  </head>
+  
+  <body>
+    <section class="material-half-bg">
+      <div class="cover"></div>
+    </section>
+    <section class="login-content">
+      <div class="logo">
+        <h1>学生端注册</h1>
+      </div>
+      <div class="login-box">
+        <form class="login-form" action = "student!register" id="fill_information" method="post">
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>信息填写</h3>
+          <div class="form-group">
+            <label class="control-label">学号</label>
+            <input class="form-control"  name = "student.stuNum" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">姓名</label>
+            <input class="form-control" name = "student.stuName" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">班级</label>
+            <input class="form-control" name = "student.class_" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">密码</label>
+            <input class="form-control" name = "student.password" type="password">
+          </div>
+          <div class="form-group">
+            <label class="control-label">手机</label>
+            <input class="form-control" name = "student.phoneNum" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">QQ</label>
+            <input class="form-control" name = "student.qq" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">电子邮箱</label>
+            <input class="form-control" name = "student.email" type="text">
+          </div>
+          <div class="form-group">
+          	<label class="control-label">感兴趣的竞赛</label>
+            <div class="select-style">        
+			 	<select name = "student.compNum">
+					<option value="1">电子竞赛</option>
+					<option value="2">acm软件设计大赛</option>
+					<option value="3">服务外包</option>
+			 	</select>
+			</div>
+          </div>
+          <div class="form-group">
+          	<label class="control-label">密码保护问题</label>
+            <div class="select-style">        
+			 	<select name = "student.passwordQue">
+					    <option value="1">你母亲的姓名？</option>
+						<option value="2">你父亲的姓名？</option>
+						<option value="3">你的出生地？</option>
+			 	</select>
+			</div>
+          </div>
+		  <div class="form-group">
+          	<label class="control-label">密保问题答案</label>
+            <input class="form-control" name = "student.answer" type="text">
+          </div>	
+		  <div class="form-group btn-container">
+		  	<input type="button" class="btn btn-primary btn-block" onclick="checkInput()" value="注册">
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <script type="text/javascript">
+      function checkInput(){
+        var form=document.getElementById('fill_information');
+        var inputs=form.getElementsByTagName('input');        
+        for(var i=0;i<inputs.length;i++){
+          var parent=inputs[i].parentNode;
+          if(inputs[i].value==''){
+            var small=document.createElement('small');
+            var smalltext=document.createTextNode("输入不能为空!");
+            small.appendChild(smalltext);
+            if(parent.getElementsByTagName('small').length==0){
+              parent.appendChild(small);
+            }
+            return false;
+          }
+          if(inputs[i].value){
+            if(parent.getElementsByTagName('small').length!=0){
+              var smal=parent.getElementsByTagName('small');
+              parent.removeChild(smal[0]);
+            }
+          } 
+        }
+        form.submit();
+      }
+    </script>
+  </body>
+</html>

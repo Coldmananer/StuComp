@@ -1,0 +1,58 @@
+.publish-news .col-md-6 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 70%;
+            flex: 0 0 70%;
+    max-width: 70%;
+  }
+.new-type .col-md-6{
+ 	-webkit-box-flex: 0;
+        -ms-flex: 0 0 30%;
+            flex: 0 0 30%;
+    max-width: 30%;
+ }
+ .col-md-3{
+ 	 max-width: 15%;
+ }
+ .news-number{
+ 	display: inline-block;
+ 	padding:0 5px;
+ }
+
+ /*蓝色按钮,绝对定位*/
+            .blueButton
+            {
+                position: absolute;
+                display: block;
+                width: 80px;
+                height: 30px;
+                line-height:30px;
+                background-color: #009688;
+                color: #fff;
+                text-decoration: none;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 2px;
+                font-weight: bold;
+            }
+            .blueButton:hover
+            {
+                text-decoration: none;
+            }
+            /*自定义上传,位置大小都和a完全一样,而且完全透明*/
+            .myFileUpload
+            {
+                position: absolute;
+                display: block;
+                width: 80px;
+                height: 30px;
+                opacity: 0;
+            }
+            /*显示上传文件夹名的Div*/
+            .show
+            {
+                position: absolute;
+                top:5px;
+                left:100px;
+                width: 90%;
+                height: 30px;
+            }

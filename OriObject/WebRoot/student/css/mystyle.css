@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+select{
+	 border: solid 1px #ec5242;
+	 appearance:none;
+  	-moz-appearance:none;
+  	-webkit-appearance:none;
+  	 width:	300px;
+  	 height:30px;
+}
+select::-ms-expand { display: none; }
+
+/*.red{
+	background-color:#ec5242;
+	color:#ffffff;
+}*/
+
+

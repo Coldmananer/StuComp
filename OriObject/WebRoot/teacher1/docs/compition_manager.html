@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>competition_manager</title>
+<style>
+	 <link rel="stylesheet" href="css/competition_manager.css" type="text/css" media="screen" />
+</style>
+</head>
+
+<body>
+	<div class="container">
+    	<p class="title">XXXXX竞赛管理</p>
+        <div class="attend-list">
+            <div class="attend-head">
+                <div>人员名单</div>
+                <div class="search">
+                    <input type="text" placeholder="搜索人员"/>
+                    <img src="./search.png"/>
+                </div>
+            </div>
+            <div class="attend-body">
+            	<div>XXX..........................已提交</div>
+                <div>
+                    <input type="button" value="详情" />
+                    <input type="button" value="管理"/>
+                </div>
+            </div>
+        </div>
+        <div class="attend-tail">
+            <div class="comp-condition">
+                <p>竞赛状态</p>
+                <div>
+                    <p><input type="radio" name="comp_condition"/>开始报名</p>
+                    <p><input type="radio" name="comp_condition"/>竞赛准备</p>
+                    <p><input type="radio" name="comp_condition"/>结束竞赛</p>
+                    <p><input type="radio" name="comp_condition"/>发布成绩</p>
+                </div>
+            </div>
+            <div class="button-style">
+                <div>
+                    <input type="button" value="人员管理" />
+                    <input type="button" value="发布竞赛题目"/>
+                    <input type="button" value="竞赛信息修改" onclick="javascrtpt:window.location.href='compInfromationChange.jsp'">/>
+                </div>
+                <div>
+                    <input type="button" value="人员管理" />
+                    <input type="button" value="发布竞赛题目"/>
+                    <input type="button" value="竞赛信息修改"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+body{
+	background:#fff url(../images/scheme3/bg.jpg) repeat-x;
+	}
+
+	
+th {
+	background:#a8b2c5 url(../images/highlight_line.gif) repeat-x scroll 0 0;
+}
+.copyrights{
+	text-indent:-9999px;
+	height:0;
+	line-height:0;
+	font-size:0;
+	overflow:hidden;
+}
+td.alt,.odd th,.odd td {
+	background: #eceff5 url(../images/highlight_line.gif) repeat-x scroll 0 0;
+	color: #797268;
+}
+
+th.specalt {
+	background-color: #eceff5 ;
+	color: #797268;
+}
+
+.flexy_datepicker th {
+	background:#ffc244 url(../images/highlight_line.gif) repeat-x scroll 0 0;
+}
+
+.flexy_datepicker td.alt {
+	background: #fff5e2 url(../images/highlight_line.gif) repeat-x scroll 0 0;
+	color: #797268;
+}
+
+.flexy_datepicker th.specalt {
+	background: #fff5e2 url(../images/scheme3/bullet1.gif) no-repeat;
+	color: #797268;
+}
+
+.button{
+	background:#458B74 url(../images/highlight_line.gif) repeat-x top left;
+}
+
+.button:hover{
+	background:	#2F4F4F;
+}
+.attend-body div,.grade-submit{
+		margin:10px;
+	}
+	.grade-submit input[type="submit"]{
+		border-style:none;
+		width:60px;
+		height:25px;
+		background-color:#458B74;
+		color:#fff;
+		-webkit-border-radius:10px;  
+        -moz-border-radius: 10px;  
+        -ms-border-radius:10px;  
+        -o-border-radius:10px;
+        border-radius:10px;    
+	}
+	.grade-submit input[type="submit"]:hover{
+		background:	#2F4F4F;
+	}

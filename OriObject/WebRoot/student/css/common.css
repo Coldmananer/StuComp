@@ -1,0 +1,17 @@
+.login-content .login-box {
+  min-width: 500px;
+  min-height: 990px;
+}
+.select-style{
+  width: 420px;
+  height: 40px;
+  box-shadow: 0 0 5px #ccc;
+  position: relative;
+}
+select{
+   border: none;
+   outline: none;                
+   width: 420px;
+   height: 40px;
+   line-height: 40px;
+}

@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+<<<<<<< HEAD
+#Tue Jul 10 20:02:55 GMT+08:00 2018
+=======
+#Tue Jun 19 21:22:15 CST 2018
+>>>>>>> refs/remotes/origin/master
+genBasicCompId=true
+sessionFactoryName=com.HibernateSessionFactory
+profile=
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=native
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/OriObject/src/hibernate.cfg.xml
+createConfigFile=true

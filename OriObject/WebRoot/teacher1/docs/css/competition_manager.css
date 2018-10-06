@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+		padding:0;
+		margin:0;
+		}
+	.container{
+		position:relative;
+		top:10px;
+		}
+	.container .title{
+		font-size:20px;
+		font-family: "Microsoft YaHei", Georgia, "Times New Roman", Times, sans-serif;
+		text-align:center;
+		}
+	.attend-list{
+		border:1px solid black;
+		width:70%;
+		height:400px;
+		margin:auto;
+		}
+	.attend-head{
+		display:flex;
+		justify-content:space-between;
+		}
+	.attend-head input[type="text"]{
+		border-style:none;
+		width:200px;
+		height:25px;
+		border:0.5px solid #458B74;
+		margin:0;
+		}
+	.search img{
+		float:right;
+		}
+	.search img:after{
+		content:"";
+		visibility:hidden;
+		display:block;
+		height:0;
+		clear:both;
+		}
+	.attend-body{
+		display:flex;
+		flex-direction:column;
+		}
+	input[type="button"]{
+		border-style:none;
+		-webkit-border-radius:10px;  
+        -moz-border-radius: 10px;  
+		background-color:#458B74;
+		color:#fff;
+		}	
+	.attend-body div,.attend-head div{
+		margin:5px 10px;
+		}
+	.attend-body input[type="button"]{
+		width:60px;
+		height:25px;
+		margin:0 10px;
+		}
+	.attend-tail input[type="button"]{
+		width:100px;
+		height:30px;
+		}	
+	input[type="button"]:hover{
+		background:	#2F4F4F;
+	}
+	.attend-tail{
+		display:flex;
+		flex-direction:row;
+		align-items:center;
+		justify-content:space-between;
+		width:70%;
+		margin:auto;
+		padding:10px 0;
+	}
+	.comp-condition{
+		display:flex;
+		flex-direction:row;
+		align-items:center;
+		font-size:18px;
+	}
+	.comp-condition div{
+		margin:0 5px;
+	}
+	.team-list-style{
+		font-size:18px;
+		font-weight:bold;
+		margin-bottom:10px;
+	}
+	.comp-detail-codition P{
+		color:#dc3545;
+	}
+	.button-style div{
+		margin:0 0 5px 0;
+	}
+	.condition-style{
+		display:flex;
+		justify-content:center;
+		align-items:center;	
+	}
+	.add-back-style{
+		border:none;
+		width:90px;
+		height:30px;
+		background-color:#458B74;
+		color:#ffffff;
+		margin:5px;
+	}
+	/*队伍详情界面 teamdetails.jsp*/
+	.intro-stat-style{
+		font-size: 18px;
+		margin: 0 5px;
+	}
+	.intro-stat-detail-style{
+		color:#dc3545;
+	}
